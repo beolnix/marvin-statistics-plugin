@@ -104,6 +104,8 @@ dependencies {
     compile "org.codehaus.groovy:groovy-all:${GROOVY_VERSION}"
     compile "xml-apis:xml-apis:${XML_APIS_VERSION}"
 
+    compile 'com.google.gag:gag:1.0.1'
+
     compile 'log4j:log4j'
     compile 'org.slf4j:slf4j-log4j12'
     compile 'org.slf4j:slf4j-api'
