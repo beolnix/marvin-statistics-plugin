@@ -85,7 +85,7 @@ public class StatisticsIMPlugin implements IMPlugin {
             imSessionManager.sendMessage(
                     createOutMsg(
                             msg,
-                            "* - statistics plugin intercept all messages"
+                            "Статистика чата: " + statisticsService.getStatisticsUrl(msg)
                     )
             );
         } else {

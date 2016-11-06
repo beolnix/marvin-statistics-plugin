@@ -11,6 +11,8 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import static com.beolnix.marvin.im.plugin.statistics.configuration.Constants.PROP_SERVICE_URL;
+
 /**
  * Created by beolnix on 07/02/16.
  */
@@ -46,6 +48,13 @@ public class StatisticsService {
 
         uploader.asyncUpload(chatDTO, msg);
 
+    }
+
+    public String getStatisticsUrl(IMIncomingMessage msg) {
+        ChatDTO chatDTO = getOrCreateChatByName(msg.getConferenceName(), msg.getProtocol());
+        String baseUrl = "http://" + pluginConfig.getPropertyByName(PROP_SERVICE_URL);
+
+        return baseUrl + "/chat/" + chatDTO.getId();
     }
 
 
