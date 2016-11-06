@@ -84,7 +84,7 @@ sourceSets {
 
 
 dependencies {
-    compile 'com.beolnix.marvin:statistics-api:0.1.1'
+    compile 'com.beolnix.marvin:statistics-api:0.1.2'
 
     compile group: 'com.beolnix.marvin', name: 'marvin-api', version: MARVIN_API_VERSION, changing: true
     compile group: 'com.beolnix.marvin', name: 'marvin-plugin-utils', version: MARVIN_UTILS_VERSION, changing: true
@@ -133,7 +133,7 @@ jar {
     }
 
     // workaround package scan in osgi bundle
-    from(configurations.compile.filter{ (it.name.startsWith("statistics-service-api")
+    from(configurations.compile.filter{ (it.name.startsWith("statistics-api")
             || it.name.startsWith("ribbon")
             || it.name.startsWith("spring"))}.collect { it.isDirectory() ? it : zipTree(it) }) {
         exclude "META-INF/*.SF"

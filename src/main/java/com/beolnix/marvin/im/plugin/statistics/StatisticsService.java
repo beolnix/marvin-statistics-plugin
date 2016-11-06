@@ -32,8 +32,9 @@ public class StatisticsService {
     }
 
     public void newMessage(IMIncomingMessage msg) {
+        logger.info("Message to persist: " + msg);
         if (!msg.isConference()) {
-            logger.debug("ignore nonConference message: " + msg.getAuthor() +
+            logger.info("ignore nonConference message: " + msg.getAuthor() +
                     " - " + msg.getRawMessageBody());
         }
 

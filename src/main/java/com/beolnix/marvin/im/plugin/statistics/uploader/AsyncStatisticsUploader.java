@@ -7,6 +7,7 @@ import com.beolnix.marvin.statistics.api.model.StatisticsDTO;
 import com.beolnix.marvin.statistics.api.model.UserDTO;
 import com.beolnix.marvin.statistics.api.model.UserSpecificMetricsDTO;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -25,10 +26,11 @@ public class AsyncStatisticsUploader {
     private final StatisticsApi statisticsApi;
     private final Logger logger;
     private final ReentrantLock updateLock = new ReentrantLock();
-    private final AtomicReference<List<MetricEvent>> listRef = new AtomicReference<>(new LinkedList<>());
+    private volatile AtomicReference<List<MetricEvent>> listRef = new AtomicReference<>(new LinkedList<>());
 
     private final ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
 
+    @Autowired
     public AsyncStatisticsUploader(StatisticsApi statisticsApi, Logger logger) {
         this.statisticsApi = statisticsApi;
         this.logger = logger;
@@ -37,6 +39,7 @@ public class AsyncStatisticsUploader {
     }
 
     public void asyncUpload(ChatDTO chatDTO, IMIncomingMessage msg) {
+        logger.info("Adding event:" + chatDTO.toString() + " and msg: " + msg.toString());
         updateLock.lock();
         try {
             listRef.get().add(new MetricEvent(chatDTO, msg));

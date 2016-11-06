@@ -72,6 +72,10 @@ public class StatisticsIMPlugin implements IMPlugin {
 
     @Override
     public void process(IMIncomingMessage msg) {
+
+        logger.ifPresent(loggerValue -> {
+            loggerValue.info("Received msg: " + msg.toString());
+        });
         if (!IMPluginState.INITIALIZED.equals(state)) {
             logError("plugin hasn't been initialized yet. can't process msg: " + msg);
             return;
@@ -161,7 +165,7 @@ public class StatisticsIMPlugin implements IMPlugin {
 
     private void logDebug(String msg) {
         if (logger.isPresent()) {
-            logger.get().debug(msg);
+            logger.get().info(msg);
         }
     }
 }
