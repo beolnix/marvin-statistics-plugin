@@ -86,7 +86,7 @@ public class AsyncStatisticsUploader {
         Map<String, ChatDTO> chatsMap = new HashMap<>();
 
         for (MetricEvent event : metricEvents) {
-            MetricKey key = new MetricKey(event.getMsg().getAuthor(), event.getChatDTO().getId(), "msgCount");
+            MetricKey key = new MetricKey(event.getMsg().getAuthor(), event.getChatDTO().getId(), UserSpecificMetricsDTO.MSG_COUNT_METRIC_NAME);
             Integer oldValue = cache.get(key);
             if (oldValue == null) {
                 oldValue = 0;

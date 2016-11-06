@@ -84,7 +84,7 @@ sourceSets {
 
 
 dependencies {
-    compile 'com.beolnix.marvin:statistics-api:0.1.2'
+    compile 'com.beolnix.marvin:statistics-api:0.1.3'
 
     compile group: 'com.beolnix.marvin', name: 'marvin-api', version: MARVIN_API_VERSION, changing: true
     compile group: 'com.beolnix.marvin', name: 'marvin-plugin-utils', version: MARVIN_UTILS_VERSION, changing: true
