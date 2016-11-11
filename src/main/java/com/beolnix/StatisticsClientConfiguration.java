@@ -33,7 +33,8 @@ public class StatisticsClientConfiguration extends RibbonClientConfiguration {
 
     @Override
     public ServerList<Server> ribbonServerList(IClientConfig config) {
-        disableCertificates();
+//        dont do this ever
+//        disableCertificates();
         String baseUrl = pluginConfig.getPropertyByName(PROP_SERVICE_URL);
         logger.info("Got statistics service url: " + baseUrl + " for statistics plugin.");
 
