@@ -52,7 +52,7 @@ public class StatisticsService {
 
     public String getStatisticsUrl(IMIncomingMessage msg) {
         ChatDTO chatDTO = getOrCreateChatByName(msg.getConferenceName(), msg.getProtocol());
-        String baseUrl = "http://" + pluginConfig.getPropertyByName(PROP_SERVICE_URL);
+        String baseUrl = "https://" + pluginConfig.getPropertyByName(PROP_SERVICE_URL);
 
         return baseUrl + "/#/chat/" + chatDTO.getId();
     }

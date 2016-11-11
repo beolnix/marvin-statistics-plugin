@@ -34,7 +34,8 @@ public class StatisticsIMPlugin implements IMPlugin {
     // constants
     public static final String PLUGIN_NAME = "StatisticsIMPlugin";
     private static final String COMMAND_HELP = "help";
-    private static final List<String> commandsList = Arrays.asList(COMMAND_HELP);
+    private static final String COMMAND_STATISTICS = "stat";
+    private static final List<String> commandsList = Arrays.asList(COMMAND_HELP, COMMAND_STATISTICS);
 
     @Override
     public void init(PluginConfig pluginConfig, IMSessionManager imSessionManager) {
@@ -85,8 +86,15 @@ public class StatisticsIMPlugin implements IMPlugin {
             imSessionManager.sendMessage(
                     createOutMsg(
                             msg,
-                            "Статистика чата: " + statisticsService.getStatisticsUrl(msg)
+                            msg.getCommandSymbol() + COMMAND_STATISTICS + " - ссылка на статистику этого чата."
                     )
+            );
+        } else if (COMMAND_STATISTICS.equals(msg.getCommandName())) {
+            imSessionManager.sendMessage(
+                createOutMsg(
+                    msg,
+                    "Ссылка на статистику чата: " + statisticsService.getStatisticsUrl(msg)
+                )
             );
         } else {
             logDebug("Persisting new msg: " + msg.getAuthor() + " - " + msg.getRawMessageBody());
